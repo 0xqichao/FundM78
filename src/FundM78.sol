@@ -17,6 +17,9 @@ contract FundM78{
     //用户资助金额
     mapping(address => uint256) private s_addressToAmountFunded;
 
+    event Funded(address indexed donor, uint256 amount);
+    event Withdrawn(address indexed owner, uint256 amount);
+
     modifier onlyOwner() {
         if (msg.sender != i_owner) revert FundM78__NotOwner();
         _;
@@ -29,13 +32,18 @@ contract FundM78{
     //资助
     function fund() public payable {
         require(msg.value > 0, "You need to spend more ETH!");
+        if (s_addressToAmountFunded[msg.sender] == 0) {
+            s_funders.push(msg.sender);
+        }
         s_addressToAmountFunded[msg.sender] += msg.value;
-        s_funders.push(msg.sender);
+        emit Funded(msg.sender, msg.value);
     }
 
     function withdraw() public onlyOwner {
-        (bool success,) = i_owner.call{value: address(this).balance}("");
-        require(success);
+        uint256 balance = address(this).balance;
+        (bool success, ) = i_owner.call{value: balance}("");
+        require(success, "Transfer failed");
+        emit Withdrawn(i_owner, balance);
     }
 
     function getAddressToAmountFunded(address fundingAddress) public view returns (uint256) {
