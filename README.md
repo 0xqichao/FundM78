@@ -1,66 +1,28 @@
-## Foundry
+## FundM78
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+> 一个简单的web3智能合约项目，可以用来入门学习了解，使用solidity、foundry
 
-Foundry consists of:
+## 演示
+项目前端演示地址：https://m78-rebuild.vercel.app/
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+前端代码：https://github.com/0xqichao/m78-rebuild
 
-## Documentation
 
-https://book.getfoundry.sh/
 
-## Usage
+## 功能
 
-### Build
++ 资助、提现功能
++ 项目测试部署
 
-```shell
-$ forge build
+## 安装依赖
+
+``` bash
+make install
 ```
 
-### Test
+## 测试
 
-```shell
-$ forge test
+``` bash
+forge test
 ```
 
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
